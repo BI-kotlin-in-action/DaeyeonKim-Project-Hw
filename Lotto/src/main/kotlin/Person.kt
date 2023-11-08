@@ -5,9 +5,9 @@ class Person(val money: Int) {
     fun buyLotto() {
         val count = money / Lotto.price
         print("직접 번호를 고를 로또의 개수를 입력 하세요 : ")
-        val directlyBuy = readln().toInt()
-        val autoBuy = count - directlyBuy
-        repeat(directlyBuy) {
+        val manualBuy = readln().toInt()
+        val autoBuy = count - manualBuy
+        repeat(manualBuy) {
             print(" 로또 번호를 입력하세요 : ")
             var lottoNumber = readln().split(" ").map { it.toInt() }.toSortedSet()
             while (lottoNumber.size < 6) {
