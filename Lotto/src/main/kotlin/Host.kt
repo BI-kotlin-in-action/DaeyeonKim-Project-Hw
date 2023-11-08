@@ -1,12 +1,13 @@
+enum class WinningsCal(val money: Int, var count: Int) {
+    FIRST(100000, 0),
+    SECOND(5000, 0),
+    THIRD(100, 0),
+    FOURTH(5, 0),
+    LOSE(0, 0),
+}
 
 class Host() {
-    enum class WinningsCal(val money: Int, var count: Int) {
-        FIRST(100000, 0),
-        SECOND(5000, 0),
-        THIRD(100, 0),
-        FOURTH(5, 0),
-        LOSE(0, 0),
-    }
+
     val winLotto = setWinLotto()
     var winnigs = 0
 
@@ -36,20 +37,8 @@ class Host() {
         }
     }
 
-    fun printResult() {
-        println("--------------------")
-        println("당첨 결과")
-        for (i in 1..4) {
-            println("${i}등 : ${WinningsCal.values()[i - 1].money}KW -> ${WinningsCal.values()[i - 1].count}개")
-        }
-        println("낙첨 : 0KW -> ${WinningsCal.LOSE.count}개")
-        println("--------------------")
-        println("총 당첨금 : ${winnigs}KW")
-    }
-
     fun processLotto(lottos: Lottos) {
         lottos.list.forEach { lotto: Lotto -> countRank(checkLotto(lotto)) }
         calculateWinnigs()
-        printResult()
     }
 }
