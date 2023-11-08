@@ -24,11 +24,4 @@ class Person(val money: Int) {
             lottos.list.add(lotto)
         }
     }
-
-    fun printLotto() {
-        println("사용자가 구매한 로또 번호는 다음과 같습니다.")
-        lottos.list.forEachIndexed { index, lotto ->
-            println("${index + 1} : " + lotto.lottoNumber.joinToString(" "))
-        }
-    }
 }

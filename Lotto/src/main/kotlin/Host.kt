@@ -1,4 +1,3 @@
-
 class Host() {
     val winLotto = setWinLotto()
     var winnigs = 0
@@ -20,7 +19,8 @@ class Host() {
 
     fun countRank(count: Int) {
         when (count) {
-            6 -> totalRank[Rank.FIRST] = totalRank[Rank.FIRST]?.plus(1) ?: 0 // totalRank[Rank.FIRST] = totalRank[Rank.FIRST] + 1
+            6 -> totalRank[Rank.FIRST] =
+                totalRank[Rank.FIRST]?.plus(1) ?: 0 // totalRank[Rank.FIRST] = totalRank[Rank.FIRST] + 1
             5 -> totalRank[Rank.SECOND] = totalRank[Rank.SECOND]?.plus(1) ?: 0
             4 -> totalRank[Rank.THIRD] = totalRank[Rank.THIRD]?.plus(1) ?: 0
             3 -> totalRank[Rank.FOURTH] = totalRank[Rank.FOURTH]?.plus(1) ?: 0

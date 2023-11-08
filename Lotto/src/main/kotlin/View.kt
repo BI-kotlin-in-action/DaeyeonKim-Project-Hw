@@ -11,4 +11,10 @@ class View {
         println("--------------------")
         println("총 당첨금 : ${host.winnigs}KW")
     }
+    fun printLotto(lottos: Lottos) {
+        println("사용자가 구매한 로또 번호는 다음과 같습니다.")
+        lottos.list.forEachIndexed { index, lotto ->
+            println("${index + 1} : " + lotto.lottoNumber.joinToString(" "))
+        }
+    }
 }
