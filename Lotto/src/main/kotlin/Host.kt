@@ -1,6 +1,8 @@
+
 class Host {
     val winNumber = sortedSetOf<Int>()
     val rank = IntArray(6) // 1~4등, 꽝
+
     val winnigsRule = mapOf(1 to 100000, 2 to 5000, 3 to 100, 4 to 5)
     var winnigs = 0
 
