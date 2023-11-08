@@ -1,14 +1,14 @@
 
 class Host() {
-    enum class WinningsCal(val money: Int, var count: Int) {
-        FIRST(100000, 0),
-        SECOND(5000, 0),
-        THIRD(100, 0),
-        FOURTH(5, 0),
-        LOSE(0, 0),
-    }
     val winLotto = setWinLotto()
     var winnigs = 0
+    val totalRank = mutableMapOf(
+        Rank.FIRST to 0,
+        Rank.SECOND to 0,
+        Rank.THIRD to 0,
+        Rank.FOURTH to 0,
+        Rank.LOSE to 0,
+    )
 
     fun setWinLotto(): Lotto {
         val selectNumber = (1..45).toMutableList() //
@@ -22,34 +22,22 @@ class Host() {
 
     fun countRank(count: Int) {
         when (count) {
-            6 -> WinningsCal.FIRST.count++
-            5 -> WinningsCal.SECOND.count++
-            4 -> WinningsCal.THIRD.count++
-            3 -> WinningsCal.FOURTH.count++
-            else -> WinningsCal.LOSE.count++ // 낙첨
+            6 -> totalRank[Rank.FIRST] = totalRank[Rank.FIRST]?.plus(1) ?: 0 // totalRank[Rank.FIRST] = totalRank[Rank.FIRST] + 1
+            5 -> totalRank[Rank.SECOND] = totalRank[Rank.SECOND]?.plus(1) ?: 0
+            4 -> totalRank[Rank.THIRD] = totalRank[Rank.THIRD]?.plus(1) ?: 0
+            3 -> totalRank[Rank.FOURTH] = totalRank[Rank.FOURTH]?.plus(1) ?: 0
+            else -> totalRank[Rank.LOSE] = totalRank[Rank.LOSE]?.plus(1) ?: 0
         }
     }
 
     fun calculateWinnigs() {
-        for (i in 1..4) {
-            winnigs += WinningsCal.values()[i - 1].money * WinningsCal.values()[i - 1].count // 당첨 금액 X 당첨 횟수
+        totalRank.forEach { (rank, count) ->
+            winnigs += rank.money * count
         }
-    }
-
-    fun printResult() {
-        println("--------------------")
-        println("당첨 결과")
-        for (i in 1..4) {
-            println("${i}등 : ${WinningsCal.values()[i - 1].money}KW -> ${WinningsCal.values()[i - 1].count}개")
-        }
-        println("낙첨 : 0KW -> ${WinningsCal.LOSE.count}개")
-        println("--------------------")
-        println("총 당첨금 : ${winnigs}KW")
     }
 
     fun processLotto(lottos: Lottos) {
         lottos.list.forEach { lotto: Lotto -> countRank(checkLotto(lotto)) }
         calculateWinnigs()
-        printResult()
     }
 }

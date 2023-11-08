@@ -9,4 +9,5 @@ fun main(args: Array<String>) {
     person.printLotto()
 
     host.processLotto(person.lottos)
+    View().printResult(host)
 }
