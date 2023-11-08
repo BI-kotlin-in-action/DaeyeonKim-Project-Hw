@@ -47,8 +47,8 @@ class Host() {
         println("총 당첨금 : ${winnigs}KW")
     }
 
-    fun processLotto(lottos: MutableList<Lotto>) {
-        lottos.forEach { lotto: Lotto -> countRank(checkLotto(lotto)) }
+    fun processLotto(lottos: Lottos) {
+        lottos.list.forEach { lotto: Lotto -> countRank(checkLotto(lotto)) }
         calculateWinnigs()
         printResult()
     }

@@ -8,5 +8,5 @@ fun main(args: Array<String>) {
     person.buyLotto()
     person.printLotto()
 
-    host.processLotto(person.lottoList)
+    host.processLotto(person.lottos)
 }

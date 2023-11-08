@@ -1,6 +1,7 @@
 
 class Person(val money: Int) {
-    var lottoList = mutableListOf<Lotto>()
+    val lottos = Lottos()
+
     fun buyLotto() {
         val count = money / Lotto.price
         print("직접 번호를 고를 로또의 개수를 입력 하세요 : ")
@@ -15,7 +16,7 @@ class Person(val money: Int) {
             }
 
             val lotto = Lotto(lottoNumber)
-            lottoList.add(lotto)
+            lottos.list.add(lotto)
         }
 
         repeat(autoBuy) {
@@ -26,13 +27,13 @@ class Person(val money: Int) {
                 numArray.add(num)
             }
             val lotto = Lotto(numArray)
-            lottoList.add(lotto)
+            lottos.list.add(lotto)
         }
     }
 
     fun printLotto() {
         println("사용자가 구매한 로또 번호는 다음과 같습니다.")
-        lottoList.forEachIndexed { index, lotto ->
+        lottos.list.forEachIndexed { index, lotto ->
             println("${index + 1} : " + lotto.lottoNumber.joinToString(" "))
         }
     }
