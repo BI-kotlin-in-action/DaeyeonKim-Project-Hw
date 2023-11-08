@@ -11,7 +11,6 @@ class Host {
     val winNumber = sortedSetOf<Int>()
     val rank = IntArray(6) // 1~4등, 꽝
 
-    // val winnigsRule = mapOf(1 to 100000, 2 to 5000, 3 to 100, 4 to 5)
     var winnigs = 0
 
     fun setWinNumber() {
@@ -21,13 +20,7 @@ class Host {
     }
 
     fun checkLotto(lotto: Lotto): Int {
-        var count = 0
-        for (i in 0 until 6) {
-            if (winNumber.contains(lotto.lottoNumber.elementAt(i))) {
-                count++
-            }
-        }
-        return count
+        return winNumber.intersect(lotto.lottoNumber).count()
     }
 
     fun countRank(count: Int) {
@@ -43,7 +36,6 @@ class Host {
     fun calculateWinnigs() {
         for (i in 1..4) {
             winnigs += rank[i] * WinnigsRule.values()[i - 1].money
-            // winnigs += rank[i] * (winnigsRule[i] ?: 0)
         }
     }
 
