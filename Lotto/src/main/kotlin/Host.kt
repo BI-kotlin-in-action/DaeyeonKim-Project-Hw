@@ -1,9 +1,16 @@
+enum class WinnigsRule(val money: Int) {
+    FIRST(100000),
+    SECOND(5000),
+    THIRD(100),
+    FOURTH(5),
+    LOSE(0),
+}
 
 class Host {
     val winNumber = sortedSetOf<Int>()
     val rank = IntArray(6) // 1~4등, 꽝
 
-    val winnigsRule = mapOf(1 to 100000, 2 to 5000, 3 to 100, 4 to 5)
+    // val winnigsRule = mapOf(1 to 100000, 2 to 5000, 3 to 100, 4 to 5)
     var winnigs = 0
 
     fun setWinNumber() {
@@ -36,7 +43,8 @@ class Host {
 
     fun calculateWinnigs() {
         for (i in 1..4) {
-            winnigs += rank[i] * (winnigsRule[i] ?: 0)
+            winnigs += rank[i] * WinnigsRule.values()[i - 1].money
+            // winnigs += rank[i] * (winnigsRule[i] ?: 0)
         }
     }
 
@@ -44,7 +52,7 @@ class Host {
         println("--------------------")
         println("당첨 결과")
         for (i in 1..4) {
-            println("${i}등 : ${winnigsRule[i]}KW -> ${rank[i]}개")
+            println("${i}등 : ${WinnigsRule.values()[i - 1].money}KW -> ${rank[i]}개")
         }
         println("낙첨 : 0KW -> ${rank[5]}개")
         println("--------------------")
