@@ -33,9 +33,4 @@ class Host() {
             winnigs += rank.money * count
         }
     }
-
-    fun processLotto(lottos: Lottos) {
-        lottos.list.forEach { lotto: Lotto -> countRank(checkLotto(lotto)) }
-        calculateWinnigs()
-    }
 }
