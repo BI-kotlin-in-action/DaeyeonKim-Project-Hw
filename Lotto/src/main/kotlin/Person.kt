@@ -32,8 +32,8 @@ class Person(val money: Int) {
 
     fun printLotto() {
         println("사용자가 구매한 로또 번호는 다음과 같습니다.")
-        for (i in 0 until lottoList.size) {
-            println("${i + 1} : " + lottoList[i].lottoNumber.joinToString(" "))
+        lottoList.forEachIndexed { index, lotto ->
+            println("${index + 1} : " + lotto.lottoNumber.joinToString(" "))
         }
     }
 }

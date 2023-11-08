@@ -1,5 +1,5 @@
 
-class Host {
+class Host() {
     enum class WinningsCal(val money: Int, var count: Int) {
         FIRST(100000, 0),
         SECOND(5000, 0),
@@ -7,18 +7,17 @@ class Host {
         FOURTH(5, 0),
         LOSE(0, 0),
     }
-
-    val winNumber = sortedSetOf<Int>()
+    val winLotto = setWinLotto()
     var winnigs = 0
 
-    fun setWinNumber() {
+    fun setWinLotto(): Lotto {
         val selectNumber = (1..45).toMutableList() //
         selectNumber.shuffle()
-        winNumber.addAll(selectNumber.subList(0, 6))
+        return Lotto(selectNumber.subList(0, 6).toSortedSet())
     }
 
     fun checkLotto(lotto: Lotto): Int {
-        return winNumber.intersect(lotto.lottoNumber).count()
+        return winLotto.lottoNumber.intersect(lotto.lottoNumber).count()
     }
 
     fun countRank(count: Int) {

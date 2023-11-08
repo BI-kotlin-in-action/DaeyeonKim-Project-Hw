@@ -4,7 +4,6 @@ fun main(args: Array<String>) {
     val money = readln().toInt()
     val person = Person(money)
     val host = Host()
-    host.setWinNumber()
     // print(host.winNumber.joinToString(" ")) //결과 확인용 당첨번호 출력
     person.buyLotto()
     person.printLotto()
