@@ -7,6 +7,7 @@ enum class WinnigsRule(val money: Int) {
 }
 
 class Host {
+
     val winNumber = sortedSetOf<Int>()
     val rank = IntArray(6) // 1~4등, 꽝
 
@@ -14,11 +15,9 @@ class Host {
     var winnigs = 0
 
     fun setWinNumber() {
-        while (winNumber.size < 6) {
-            val num = (Math.random() * 45 + 1).toInt()
-            if (winNumber.contains(num)) continue
-            winNumber.add(num)
-        }
+        val selectNumber = (1..45).toMutableList() //
+        selectNumber.shuffle()
+        winNumber.addAll(selectNumber.subList(0, 6))
     }
 
     fun checkLotto(lotto: Lotto): Int {
