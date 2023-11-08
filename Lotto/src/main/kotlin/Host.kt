@@ -11,9 +11,7 @@ class Host() {
     )
 
     fun setWinLotto(): Lotto {
-        val selectNumber = (1..45).toMutableList() //
-        selectNumber.shuffle()
-        return Lotto(selectNumber.subList(0, 6).toSortedSet())
+        return Lotto(selectNumber())
     }
 
     fun checkLotto(lotto: Lotto): Int {

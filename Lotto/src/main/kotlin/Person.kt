@@ -20,13 +20,7 @@ class Person(val money: Int) {
         }
 
         repeat(autoBuy) {
-            val numArray = sortedSetOf<Int>()
-            while (numArray.size < 6) {
-                val num = (Math.random() * 45 + 1).toInt()
-                if (numArray.contains(num)) continue
-                numArray.add(num)
-            }
-            val lotto = Lotto(numArray)
+            val lotto = Lotto(selectNumber())
             lottos.list.add(lotto)
         }
     }
