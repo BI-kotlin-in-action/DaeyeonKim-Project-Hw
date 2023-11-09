@@ -1,3 +1,5 @@
+package View
+
 fun inputMoney(): Int {
     print("로또를 구매할 금액을 입력해 주세요 : ")
     val money = readln().toInt()

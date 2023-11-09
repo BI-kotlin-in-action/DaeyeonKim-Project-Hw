@@ -5,7 +5,7 @@ class Lotto(private val lottoNumber: Set<Int> = sortedSetOf(6)) {
         val price = 1000
 
         @JvmStatic
-        val selectNumber = (1..45).toMutableList()
+        val selectNumber = (1..45)
 
         @JvmStatic
         fun selectLottoNumber(): Set<Int> {
