@@ -1,6 +1,8 @@
 class View {
-    fun startMessage() {
+    fun inputMoney(): Int {
         print("로또를 구매할 금액을 입력해 주세요 : ")
+        val money = readln().toInt()
+        return money
     }
     fun printResult(host: Host) {
         println("--------------------")
@@ -12,7 +14,7 @@ class View {
         println("총 당첨금 : ${host.winnigs}KW")
     }
     fun printLotto(lottos: Lottos) {
-        println("사용자가 구매한 로또 번호는 다음과 같습니다.")
+        println("사용자가 구매 한 로또 번호는 다음과 같습니다.")
         lottos.list.forEachIndexed { index, lotto ->
             println("${index + 1} : " + lotto.lottoNumber.joinToString(" "))
         }
