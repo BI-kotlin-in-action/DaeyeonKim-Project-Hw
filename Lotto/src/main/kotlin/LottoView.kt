@@ -7,8 +7,8 @@ fun inputMoney(): Int {
 
 fun printLotto(lottos: Lottos) {
     println("사용자가 구매 한 로또 번호는 다음과 같습니다.")
-    lottos.list.forEachIndexed { index, lotto ->
-        println("${index + 1} : " + lotto.lottoNumber.joinToString(" "))
+    lottos.getList().forEachIndexed { index, lotto ->
+        println("${index + 1} : " + lotto.getLottoNumber().joinToString(" "))
     }
 }
 

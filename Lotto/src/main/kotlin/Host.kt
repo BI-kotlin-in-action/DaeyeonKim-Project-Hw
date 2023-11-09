@@ -14,7 +14,7 @@ class Host() {
     }
 
     fun checkLotto(lotto: Lotto): Int {
-        return winLotto.lottoNumber.intersect(lotto.lottoNumber).count()
+        return winLotto.getLottoNumber().intersect(lotto.getLottoNumber()).count()
     }
 
     fun countRank(count: Int) {

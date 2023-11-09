@@ -13,7 +13,7 @@ class LottoController {
         person.buyLotto()
     }
     fun processLotto(host: Host, lottos: Lottos) {
-        lottos.list.forEach { lotto: Lotto -> host.countRank(host.checkLotto(lotto)) }
+        lottos.getList().forEach { lotto: Lotto -> host.countRank(host.checkLotto(lotto)) }
     }
     fun result(host: Host) {
         printResult(host)

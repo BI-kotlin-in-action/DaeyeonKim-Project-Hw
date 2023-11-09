@@ -16,12 +16,12 @@ class Person(val money: Int) {
             }
 
             val lotto = Lotto(lottoNumber)
-            lottos.list.add(lotto)
+            lottos.addLotto(lotto)
         }
 
         repeat(autoBuy) {
             val lotto = Lotto(selectLottoNumber())
-            lottos.list.add(lotto)
+            lottos.addLotto(lotto)
         }
     }
 }
