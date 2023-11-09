@@ -10,7 +10,7 @@ class Host() {
     )
 
     fun setWinLotto(): Lotto {
-        return Lotto(selectNumber())
+        return Lotto(selectLottoNumber())
     }
 
     fun checkLotto(lotto: Lotto): Int {
