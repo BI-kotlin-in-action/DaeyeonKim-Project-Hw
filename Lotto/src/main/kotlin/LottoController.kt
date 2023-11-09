@@ -17,7 +17,7 @@ class LottoController {
             person.lottoBuy(lottoNumber)
         }
         repeat(autoBuy) {
-            val lottoNumber = selectLottoNumber()
+            val lottoNumber = Lotto.selectLottoNumber()
             person.lottoBuy(lottoNumber)
         }
     }

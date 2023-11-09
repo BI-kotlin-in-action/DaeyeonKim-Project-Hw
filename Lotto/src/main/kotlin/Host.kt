@@ -10,7 +10,7 @@ class Host() {
     )
 
     fun setWinLotto(): Lotto {
-        return Lotto(selectLottoNumber())
+        return Lotto(Lotto.selectLottoNumber())
     }
 
     fun checkLotto(lotto: Lotto): Int {
@@ -18,7 +18,7 @@ class Host() {
     }
 
     fun countRank(count: Int) {
-        val rank = getRank(count)
+        val rank = Rank.getRank(count)
         totalRank[rank] = totalRank.getValue(rank) + 1
     }
 
