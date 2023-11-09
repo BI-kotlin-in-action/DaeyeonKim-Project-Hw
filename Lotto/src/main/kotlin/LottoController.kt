@@ -10,7 +10,16 @@ class LottoController {
         result(host) // 결과를 출력
     }
     fun buyLottos(person: Person) {
-        person.buyLotto()
+        val manualBuy = selectBuyOption()
+        val autoBuy = person.lottoCount - manualBuy
+        repeat(manualBuy) {
+            val lottoNumber = manualBuyLotto()
+            person.lottoBuy(lottoNumber)
+        }
+        repeat(autoBuy) {
+            val lottoNumber = selectLottoNumber()
+            person.lottoBuy(lottoNumber)
+        }
     }
     fun processLotto(host: Host, lottos: Lottos) {
         lottos.getList().forEach { lotto: Lotto -> host.countRank(host.checkLotto(lotto)) }
