@@ -31,4 +31,9 @@ data class Lotto(
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)
     val owner: User,
-)
+) {
+    companion object {
+        @JvmStatic
+        val LOTTO_PRICE = 1000
+    }
+}

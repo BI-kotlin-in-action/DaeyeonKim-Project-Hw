@@ -10,5 +10,5 @@ data class User(
     val id: Long = 0,
 
     @Column(nullable = false)
-    val money: Int,
+    var money: Int = 0,
 )
