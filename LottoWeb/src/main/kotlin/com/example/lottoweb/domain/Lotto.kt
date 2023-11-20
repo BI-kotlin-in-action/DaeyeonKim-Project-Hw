@@ -1,7 +1,6 @@
 package com.example.lottoweb.domain
 
 import jakarta.persistence.*
-import lombok.Builder
 import lombok.Getter
 
 @Entity
@@ -29,6 +28,7 @@ data class Lotto(
     @Column(nullable = false, unique = true)
     val number6: Int,
 
-) {
-    @Builder
-}
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    val owner: User,
+)
