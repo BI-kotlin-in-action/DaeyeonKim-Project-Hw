@@ -11,7 +11,7 @@ class LottoGenerationService(
         return (1..45).shuffled().take(6).sorted()
     }
 
-    fun generateLotto(user: User, lottoNumbers: List<Int>): Lotto {
+    fun generateLotto(user: User, lottoNumbers: List<Int>) {
         val lotto = Lotto(
             number1 = lottoNumbers[0],
             number2 = lottoNumbers[1],
@@ -22,6 +22,5 @@ class LottoGenerationService(
             owner = user,
         )
         lottoRepository.save(lotto)
-        return lotto
     }
 }
