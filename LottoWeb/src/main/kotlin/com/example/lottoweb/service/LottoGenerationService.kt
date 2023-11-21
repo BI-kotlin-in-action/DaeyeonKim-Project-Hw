@@ -12,6 +12,8 @@ class LottoGenerationService(
     }
 
     fun generateLotto(user: User, lottoNumbers: List<Int>) {
+        lottoNumbers.forEach { print("$it ") }
+        println()
         val lotto = Lotto(
             number1 = lottoNumbers[0],
             number2 = lottoNumbers[1],

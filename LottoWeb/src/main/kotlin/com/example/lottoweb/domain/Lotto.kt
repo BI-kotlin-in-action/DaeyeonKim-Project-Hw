@@ -10,22 +10,22 @@ data class Lotto(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     val number1: Int,
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     val number2: Int,
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     val number3: Int,
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     val number4: Int,
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     val number5: Int,
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     val number6: Int,
 
     @ManyToOne

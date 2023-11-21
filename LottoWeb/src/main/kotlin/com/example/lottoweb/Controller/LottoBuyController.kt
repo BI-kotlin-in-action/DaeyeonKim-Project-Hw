@@ -13,16 +13,25 @@ class LottoBuyController(
     val lottoBuyService: LottoBuyService,
     private val userService: UserService,
 ) {
-    @PostMapping("/buy")
-    fun buyLotto(@RequestBody lottoBuyRequest: LottoBuyRequest) {
+    @PostMapping("/buy-lotto/auto")
+    fun buyAutoLotto(@RequestBody lottoBuyRequest: LottoAutoBuyRequest) {
         val user = userService.findUserById(lottoBuyRequest.userId)
         lottoBuyService.buyAutoLotto(user, lottoBuyRequest.autoLottoCount)
+    }
+
+    @PostMapping("/buy-lotto/manual")
+    fun buyManualLotto(@RequestBody lottoBuyRequest: LottoManualBuyRequest) {
+        val user = userService.findUserById(lottoBuyRequest.userId)
         lottoBuyService.buyManualLotto(user, lottoBuyRequest.manualLottoCount, lottoBuyRequest.manualLottoNumbers)
     }
 
-    data class LottoBuyRequest(
+    data class LottoAutoBuyRequest(
         val userId: Long,
         val autoLottoCount: Int,
+    )
+
+    data class LottoManualBuyRequest(
+        val userId: Long,
         val manualLottoCount: Int,
         val manualLottoNumbers: List<List<Int>>,
     )

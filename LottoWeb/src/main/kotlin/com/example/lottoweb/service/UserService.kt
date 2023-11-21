@@ -10,7 +10,7 @@ class UserService(
     private val userRepository: UserRepository,
 ) {
     @Transactional
-    fun findUserById(userId: Long) = userRepository.findById(userId).orElseThrow()
+    fun findUserById(userId: Long): User = userRepository.findById(userId).orElseThrow()
 
     @Transactional
     fun joinUser() = userRepository.save(User())
