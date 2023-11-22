@@ -13,6 +13,7 @@ class LottoBuyService(
     val lottoGenerationService = LottoGenerationService(lottoRepository)
     val bankService = BankService(userRepository)
 
+    @Synchronized
     fun buyManualLotto(user: User, lottoCount: Int, lottoNumbersList: List<List<Int>>) {
         lottoNumbersList.forEach {
             lottoGenerationService.generateLotto(user, it)
@@ -20,6 +21,7 @@ class LottoBuyService(
         bankService.spendMoney(user, lottoCount)
     }
 
+    @Synchronized
     fun buyAutoLotto(user: User, lottoCount: Int) {
         repeat(lottoCount) {
             val lottoNumbers = LottoNumberService.randomLottoNumbers()

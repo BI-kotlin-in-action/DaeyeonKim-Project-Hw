@@ -1,6 +1,7 @@
 package com.example.lottoweb.service
 
 import com.example.lottoweb.domain.User
+import com.example.lottoweb.domain.WinningLotto
 import com.example.lottoweb.repository.LottoRepository
 import com.example.lottoweb.repository.UserRepository
 import com.example.lottoweb.repository.WinningLottoRepository
@@ -13,10 +14,17 @@ class ScoringSystemService(
     private val userRepository: UserRepository,
     private val winningLottoRepository: WinningLottoRepository,
 ) {
-
-    fun getTotalMoney(user: User): Int {
-        val lottoList = lottoRepository.findAllByOwnerIdAndScored(user.id)
+    fun getTotalMoneyAndRank(user: User): Pair<Int, IntArray> {
         val winningLotto = winningLottoRepository.findFirstByOrderByIdDesc()
+        val totalMoney = getTotalMoney(user, winningLotto)
+        val rankCount = getTotalRank(user, winningLotto)
+        return Pair(totalMoney, rankCount.values.toIntArray())
+    }
+
+    // 동시성 문제를 해결하기 위해 winningLotto를 파라미터로 받는다.
+    @Synchronized
+    fun getTotalMoney(user: User, winningLotto: WinningLotto): Int {
+        val lottoList = lottoRepository.findAllByOwnerIdAndScored(user.id)
         val winningLottoNumbers = winningLotto.getWinningLottoNumbers()
         val totalMoney = lottoList.sumOf { calculateMoney(it.getLottoNumbers(), winningLottoNumbers) }
         val bankService = BankService(userRepository)
@@ -28,9 +36,10 @@ class ScoringSystemService(
         return totalMoney
     }
 
-    fun getTotalRank(user: User): Map<Rank, Int> {
+    // 동시성 문제를 해결하기 위해 winningLotto를 파라미터로 받는다.
+    @Synchronized
+    fun getTotalRank(user: User, winningLotto: WinningLotto): Map<Rank, Int> {
         val lottoList = lottoRepository.findAllByOwnerIdAndScored(user.id)
-        val winningLotto = winningLottoRepository.findFirstByOrderByIdDesc()
         val winningLottoNumbers = winningLotto.getWinningLottoNumbers()
         val rankCount = mutableMapOf<Rank, Int>()
         lottoList.forEach {

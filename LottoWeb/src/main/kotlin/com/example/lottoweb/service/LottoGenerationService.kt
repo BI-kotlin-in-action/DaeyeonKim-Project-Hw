@@ -10,7 +10,6 @@ class LottoGenerationService(
     private val lottoRepository: LottoRepository,
 ) {
     fun generateLotto(user: User, lottoNumbers: List<Int>) {
-        println()
         val lotto = Lotto(
             number1 = lottoNumbers[0],
             number2 = lottoNumbers[1],
