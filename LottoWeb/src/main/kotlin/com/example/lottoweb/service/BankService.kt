@@ -1,5 +1,6 @@
 package com.example.lottoweb.service
 
+import com.example.lottoweb.domain.Lotto
 import com.example.lottoweb.domain.User
 import com.example.lottoweb.repository.UserRepository
 import jakarta.transaction.Transactional
@@ -11,7 +12,7 @@ class BankService(
 ) {
     @Transactional
     fun spendMoney(user: User, lottoCount: Int) {
-        user.money -= lottoCount * 1000
+        user.money -= lottoCount * Lotto.LOTTO_PRICE
         userRepository.save(user)
     }
 

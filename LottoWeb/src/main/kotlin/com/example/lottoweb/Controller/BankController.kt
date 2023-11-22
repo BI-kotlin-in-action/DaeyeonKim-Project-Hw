@@ -4,7 +4,11 @@ import com.example.lottoweb.service.BankService
 import com.example.lottoweb.service.UserService
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
+@RestController
+@RequestMapping("/api/bank")
 class BankController(
     private val bankService: BankService,
     private val userService: UserService,

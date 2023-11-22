@@ -29,11 +29,14 @@ data class Lotto(
     val number6: Int,
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = true)
-    val owner: User?,
+    @JoinColumn(name = "user_id", nullable = false)
+    val owner: User,
 ) {
     companion object {
         @JvmStatic
         val LOTTO_PRICE = 1000
+    }
+    fun getLottoNumbers(): List<Int> {
+        return listOf(number1, number2, number3, number4, number5, number6)
     }
 }

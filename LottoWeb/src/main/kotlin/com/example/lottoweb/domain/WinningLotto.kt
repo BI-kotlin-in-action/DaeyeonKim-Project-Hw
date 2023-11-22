@@ -22,4 +22,8 @@ data class WinningLotto(
     val number5: Int,
     @Column(nullable = false)
     val number6: Int,
-)
+) {
+    fun getWinningLottoNumbers(): List<Int> {
+        return listOf(number1, number2, number3, number4, number5, number6)
+    }
+}
