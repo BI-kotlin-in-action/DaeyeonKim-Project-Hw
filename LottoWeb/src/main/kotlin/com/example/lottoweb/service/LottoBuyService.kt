@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class LottoBuyService(
-    private val lottoRepository: LottoRepository,
-    private val userRepository: UserRepository,
+    lottoRepository: LottoRepository,
+    userRepository: UserRepository,
 ) {
     val lottoGenerationService = LottoGenerationService(lottoRepository)
     val bankService = BankService(userRepository)

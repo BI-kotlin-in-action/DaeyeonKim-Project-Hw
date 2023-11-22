@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service
 class LottoGenerationService(
     private val lottoRepository: LottoRepository,
 ) {
-
     fun generateLotto(user: User, lottoNumbers: List<Int>) {
         println()
         val lotto = Lotto(

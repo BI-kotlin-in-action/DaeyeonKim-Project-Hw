@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service
 
 @Service
 class ScoringSystemService(
-    val lottoRepository: LottoRepository,
-    val userRepository: UserRepository,
-    val winningLottoRepository: WinningLottoRepository,
+    private val lottoRepository: LottoRepository,
+    private val userRepository: UserRepository,
+    private val winningLottoRepository: WinningLottoRepository,
 ) {
 
     fun getTotalMoney(user: User): Int {
