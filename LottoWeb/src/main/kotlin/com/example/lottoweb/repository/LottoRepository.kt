@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface LottoRepository : JpaRepository<Lotto, Long> {
-    fun findAllByOwnerId(ownerId: Long): List<Lotto>
+    fun findAllByOwnerIdAndScored(ownerId: Long, scored: Boolean = false): List<Lotto>
 }

@@ -28,6 +28,9 @@ data class Lotto(
     @Column(nullable = false)
     val number6: Int,
 
+    @Column(nullable = false)
+    var scored: Boolean = false,
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     val owner: User,

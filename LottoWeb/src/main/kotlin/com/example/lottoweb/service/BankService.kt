@@ -13,12 +13,18 @@ class BankService(
     @Transactional
     fun spendMoney(user: User, lottoCount: Int) {
         user.money -= lottoCount * Lotto.LOTTO_PRICE
+        if (user.money < 0) {
+            throw RuntimeException("잔액이 부족합니다.")
+        }
         userRepository.save(user)
     }
 
     @Transactional
     fun withdrawMoney(user: User, money: Int) {
         user.money -= money
+        if (user.money < 0) {
+            throw RuntimeException("잔액이 부족합니다.")
+        }
         userRepository.save(user)
     }
 

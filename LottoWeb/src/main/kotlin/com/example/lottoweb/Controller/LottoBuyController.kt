@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/lotto")
 class LottoBuyController(
-    val lottoBuyService: LottoBuyService,
+    private val lottoBuyService: LottoBuyService,
     private val userService: UserService,
 ) {
     @PostMapping("/buy-lotto/auto")

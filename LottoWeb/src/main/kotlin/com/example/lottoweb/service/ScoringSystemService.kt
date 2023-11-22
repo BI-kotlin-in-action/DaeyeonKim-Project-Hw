@@ -15,17 +15,21 @@ class ScoringSystemService(
 ) {
 
     fun getTotalMoney(user: User): Int {
-        val lottoList = lottoRepository.findAllByOwnerId(user.id)
+        val lottoList = lottoRepository.findAllByOwnerIdAndScored(user.id)
         val winningLotto = winningLottoRepository.findFirstByOrderByIdDesc()
         val winningLottoNumbers = winningLotto.getWinningLottoNumbers()
         val totalMoney = lottoList.sumOf { calculateMoney(it.getLottoNumbers(), winningLottoNumbers) }
         val bankService = BankService(userRepository)
         bankService.depositMoney(user, totalMoney)
+        lottoList.forEach {
+            it.scored = true
+        }
+        lottoRepository.saveAll(lottoList)
         return totalMoney
     }
 
     fun getTotalRank(user: User): Map<Rank, Int> {
-        val lottoList = lottoRepository.findAllByOwnerId(user.id)
+        val lottoList = lottoRepository.findAllByOwnerIdAndScored(user.id)
         val winningLotto = winningLottoRepository.findFirstByOrderByIdDesc()
         val winningLottoNumbers = winningLotto.getWinningLottoNumbers()
         val rankCount = mutableMapOf<Rank, Int>()
