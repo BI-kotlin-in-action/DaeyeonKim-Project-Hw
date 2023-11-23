@@ -2,6 +2,7 @@ package com.example.lottoweb.Controller
 
 import com.example.lottoweb.service.BankService
 import com.example.lottoweb.service.UserService
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -19,4 +20,7 @@ class BankController(
 
     @PostMapping("{userId}/withdraw/{money}")
     fun withdrawMoney(@PathVariable userId: Long, @PathVariable money: Int) = bankService.withdrawMoney(userService.findUserById(userId), money)
+
+    @GetMapping("{userId}/balance")
+    fun getBalance(@PathVariable userId: Long) = bankService.getBalance(userService.findUserById(userId))
 }

@@ -32,4 +32,7 @@ class BankService(
         user.money += money
         userRepository.save(user)
     }
+
+    @Synchronized
+    fun getBalance(user: User) = user.money
 }
