@@ -22,7 +22,7 @@ class ScoringSystemController(
 //        val user = userService.findUserById(userId)
 //        return scoringSystemService.getTotalMoney(user)
 //    }
-    @PostMapping("/{userId}/check-results")
+    @PutMapping("/{userId}/check-results")
     fun getScoreAndMoney(@PathVariable userId: Long): Pair<Int, IntArray> {
         val user = userService.findUserById(userId)
         return scoringSystemService.getTotalMoneyAndRank(user)

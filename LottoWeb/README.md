@@ -34,7 +34,7 @@
 * **URL**
   * /api/bank/{userId}/deposit/{money}
 * **Method:**
-  *  `POST`
+  *  `PUT`
 * **URL Params**
   * **Required:**
     * `userId=[Long]`
@@ -46,7 +46,7 @@
 * **URL**
   * /api/bank/{userId}/withdraw/{money}
 * **Method:**
-  *  `POST`
+  *  `PUT`
 * **URL Params**
   * **Required:**
     * `userId=[Long]`
@@ -71,7 +71,7 @@
 * **URL**
   * /api/scoring-system/{userId}/check-results
 * **Method:**
-* `POST`
+* `PUT`
 * **Path Params**
   * **Required:**
     * `userId=[Long]`
