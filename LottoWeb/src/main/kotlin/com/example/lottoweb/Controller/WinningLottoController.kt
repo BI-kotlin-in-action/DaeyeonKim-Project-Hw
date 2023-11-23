@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/WinningLotto")
+@RequestMapping("/api/winning-lotto")
 class WinningLottoController(
     private val winningLottoService: WinningLottoService,
 ) {
     // 불필요하지만 테스트를 위해 추가
-    @PostMapping("/raffle")
+    @PostMapping("/raffle-winning-lotto")
     fun raffleWinningLotto() = winningLottoService.generateWinningLotto()
 
-    @GetMapping("/results/{id}")
+    @GetMapping("/history/{id}")
     fun findWinningLottoNumbers(@PathVariable id: Long) = winningLottoService.findWinningLotto(id)
 }
