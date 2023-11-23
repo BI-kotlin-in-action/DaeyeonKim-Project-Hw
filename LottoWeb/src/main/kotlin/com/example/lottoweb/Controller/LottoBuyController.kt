@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
+// @Tag(name = "LottoBuy", description = "로또 구매 관련 API")
 @RestController
 @RequestMapping("/api/lotto")
 class LottoBuyController(

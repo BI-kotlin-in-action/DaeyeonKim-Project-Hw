@@ -4,6 +4,7 @@ import com.example.lottoweb.service.ScoringSystemService
 import com.example.lottoweb.service.UserService
 import org.springframework.web.bind.annotation.*
 
+// @Tag(name = "ScoringSystem", description = "점수 계산 관련 API")
 @RestController
 @RequestMapping("/api/scoring-system")
 class ScoringSystemController(

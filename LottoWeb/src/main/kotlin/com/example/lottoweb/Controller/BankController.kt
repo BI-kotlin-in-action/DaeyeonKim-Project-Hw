@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
+// @Tag(name = "Bank", description = "뱅킹 관련 API")
 @RestController
 @RequestMapping("/api/bank")
 class BankController(
