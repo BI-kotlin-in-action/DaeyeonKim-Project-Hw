@@ -1,5 +1,7 @@
 package com.example.lottoweb.Controller
 
+import com.example.lottoweb.dto.AutoRequestDTO
+import com.example.lottoweb.dto.ManualRequestDTO
 import com.example.lottoweb.service.LottoBuyService
 import com.example.lottoweb.service.UserService
 import org.springframework.web.bind.annotation.PostMapping
@@ -14,26 +16,15 @@ class LottoBuyController(
     private val lottoBuyService: LottoBuyService,
     private val userService: UserService,
 ) {
-    @PostMapping("/buy-lottos/auto")
-    fun buyAutoLotto(@RequestBody lottoBuyRequest: LottoAutoBuyRequest) {
-        val user = userService.findUserById(lottoBuyRequest.userId)
-        lottoBuyService.buyAutoLotto(user, lottoBuyRequest.autoLottoCount)
+    @PostMapping("/options?option=auto")
+    fun buyAutoLotto(@RequestBody autoRequest: AutoRequestDTO) {
+        val user = userService.findUserById(autoRequest.userId)
+        lottoBuyService.buyAutoLotto(user, autoRequest.count)
     }
 
-    @PostMapping("/buy-lottos/manual")
-    fun buyManualLotto(@RequestBody lottoBuyRequest: LottoManualBuyRequest) {
-        val user = userService.findUserById(lottoBuyRequest.userId)
-        lottoBuyService.buyManualLotto(user, lottoBuyRequest.manualLottoCount, lottoBuyRequest.manualLottoNumbers)
+    @PostMapping("/options?option=manual")
+    fun buyManualLotto(@RequestBody manualRequestDTO: ManualRequestDTO) {
+        val user = userService.findUserById(manualRequestDTO.userId)
+        lottoBuyService.buyManualLotto(user, manualRequestDTO.count, manualRequestDTO.numbers)
     }
-
-    data class LottoAutoBuyRequest(
-        val userId: Long,
-        val autoLottoCount: Int,
-    )
-
-    data class LottoManualBuyRequest(
-        val userId: Long,
-        val manualLottoCount: Int,
-        val manualLottoNumbers: List<List<Int>>,
-    )
 }
