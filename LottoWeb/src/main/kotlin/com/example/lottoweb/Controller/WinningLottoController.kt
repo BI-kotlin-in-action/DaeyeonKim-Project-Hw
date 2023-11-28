@@ -14,7 +14,7 @@ class WinningLottoController(
     private val winningLottoService: WinningLottoService,
 ) {
     // 불필요하지만 테스트를 위해 추가
-    @PostMapping("/raffle-winning-lotto")
+    @PostMapping("/raffle")
     fun raffleWinningLotto() = winningLottoService.generateWinningLotto()
 
     @GetMapping("/history/{id}")
