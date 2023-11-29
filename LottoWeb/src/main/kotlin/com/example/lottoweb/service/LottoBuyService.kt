@@ -5,6 +5,7 @@ import com.example.lottoweb.dto.LottoBuyResponseDTO
 import com.example.lottoweb.repository.LottoRepository
 import com.example.lottoweb.repository.UserRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class LottoBuyService(
@@ -14,7 +15,7 @@ class LottoBuyService(
     val lottoGenerationService = LottoGenerationService(lottoRepository)
     val bankService = BankService(userRepository)
 
-    @Synchronized
+    @Transactional
     fun buyManualLotto(user: User, lottoCount: Int, lottoNumbersList: List<List<Int>>): LottoBuyResponseDTO {
         lottoNumbersList.forEach {
             lottoGenerationService.generateLotto(user, it)
@@ -23,7 +24,7 @@ class LottoBuyService(
         return LottoBuyResponseDTO(user.id, user.money, lottoCount)
     }
 
-    @Synchronized
+    @Transactional
     fun buyAutoLotto(user: User, lottoCount: Int): LottoBuyResponseDTO {
         repeat(lottoCount) {
             val lottoNumbers = LottoNumberService.randomLottoNumbers()

@@ -5,11 +5,13 @@ import com.example.lottoweb.dto.WinningLottoResponseDTO
 import com.example.lottoweb.repository.WinningLottoRepository
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class WinningLottoService(
     private val winningLottoRepository: WinningLottoRepository,
 ) {
+    @Transactional
     @Scheduled(fixedRate = 600000) // 5초마다 실행
     fun generateWinningLotto() {
         val lottoNumbers = LottoNumberService.randomLottoNumbers()
@@ -24,6 +26,8 @@ class WinningLottoService(
         winningLottoRepository.save(winningLotto)
         println("당첨 번호: $lottoNumbers")
     }
+
+    @Transactional(readOnly = true)
     fun findWinningLotto(id: Long): WinningLottoResponseDTO {
         val winningLotto = winningLottoRepository.findById(id).orElseThrow()
         val maxId = winningLottoRepository.findFirstByOrderByIdDesc().id

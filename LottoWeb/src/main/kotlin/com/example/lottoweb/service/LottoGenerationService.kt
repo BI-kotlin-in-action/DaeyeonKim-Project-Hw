@@ -4,11 +4,13 @@ import com.example.lottoweb.domain.Lotto
 import com.example.lottoweb.domain.User
 import com.example.lottoweb.repository.LottoRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class LottoGenerationService(
     private val lottoRepository: LottoRepository,
 ) {
+    @Transactional
     fun generateLotto(user: User, lottoNumbers: List<Int>) {
         val lotto = Lotto(
             number1 = lottoNumbers[0],

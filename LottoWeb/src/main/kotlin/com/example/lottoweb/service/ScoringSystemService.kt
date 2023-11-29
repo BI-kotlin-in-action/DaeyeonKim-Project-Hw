@@ -8,6 +8,7 @@ import com.example.lottoweb.repository.UserRepository
 import com.example.lottoweb.repository.WinningLottoRepository
 import com.example.lottoweb.service.enums.Rank
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class ScoringSystemService(
@@ -15,6 +16,7 @@ class ScoringSystemService(
     private val userRepository: UserRepository,
     private val winningLottoRepository: WinningLottoRepository,
 ) {
+    @Transactional
     fun getResult(user: User): GradingResponseDTO {
         val winningLotto = winningLottoRepository.findFirstByOrderByIdDesc()
         val totalMoney = getTotalMoney(user, winningLotto)
@@ -22,8 +24,6 @@ class ScoringSystemService(
         return GradingResponseDTO(user.id, totalMoney, rankCount)
     }
 
-    // 동시성 문제를 해결하기 위해 winningLotto를 파라미터로 받는다.
-    @Synchronized
     fun getTotalMoney(user: User, winningLotto: WinningLotto): Int {
         val lottoList = lottoRepository.findAllByOwnerIdAndScored(user.id)
         val winningLottoNumbers = winningLotto.getWinningLottoNumbers()
@@ -37,8 +37,6 @@ class ScoringSystemService(
         return totalMoney
     }
 
-    // 동시성 문제를 해결하기 위해 winningLotto를 파라미터로 받는다.
-    @Synchronized
     fun getTotalRank(user: User, winningLotto: WinningLotto): Map<Rank, Int> {
         val lottoList = lottoRepository.findAllByOwnerIdAndScored(user.id)
         val winningLottoNumbers = winningLotto.getWinningLottoNumbers()

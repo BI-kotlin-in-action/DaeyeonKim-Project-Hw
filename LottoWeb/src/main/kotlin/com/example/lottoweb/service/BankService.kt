@@ -4,12 +4,13 @@ import com.example.lottoweb.domain.Lotto
 import com.example.lottoweb.domain.User
 import com.example.lottoweb.repository.UserRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class BankService(
     private val userRepository: UserRepository,
 ) {
-    @Synchronized
+    @Transactional
     fun spendMoney(user: User, lottoCount: Int) {
         user.money -= lottoCount * Lotto.LOTTO_PRICE
         if (user.money < 0) {
@@ -18,7 +19,7 @@ class BankService(
         userRepository.save(user)
     }
 
-    @Synchronized
+    @Transactional
     fun withdrawMoney(user: User, money: Int) {
         user.money -= money
         if (user.money < 0) {
@@ -27,12 +28,12 @@ class BankService(
         userRepository.save(user)
     }
 
-    @Synchronized
+    @Transactional
     fun depositMoney(user: User, money: Int) {
         user.money += money
         userRepository.save(user)
     }
 
-    @Synchronized
+    @Transactional(readOnly = true)
     fun getBalance(user: User) = user.money
 }
