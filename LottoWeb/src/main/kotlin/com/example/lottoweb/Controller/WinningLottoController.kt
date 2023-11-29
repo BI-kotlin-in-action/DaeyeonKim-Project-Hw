@@ -1,7 +1,9 @@
 package com.example.lottoweb.Controller
 
+import com.example.lottoweb.dto.WinningLottoResponseDTO
 import com.example.lottoweb.service.WinningLottoService
 import io.swagger.v3.oas.annotations.tags.Tag
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -19,5 +21,8 @@ class WinningLottoController(
     fun raffleWinningLotto() = winningLottoService.generateWinningLotto()
 
     @GetMapping("/history/{id}")
-    fun findWinningLottoNumbers(@PathVariable id: Long) = winningLottoService.findWinningLotto(id)
+    fun findWinningLottoNumbers(@PathVariable id: Long): ResponseEntity<WinningLottoResponseDTO> {
+        val result = winningLottoService.findWinningLotto(id)
+        return ResponseEntity.ok(result)
+    }
 }

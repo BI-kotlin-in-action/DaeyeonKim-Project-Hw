@@ -1,6 +1,7 @@
 package com.example.lottoweb.service
 
 import com.example.lottoweb.domain.WinningLotto
+import com.example.lottoweb.dto.WinningLottoResponseDTO
 import com.example.lottoweb.repository.WinningLottoRepository
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
@@ -23,19 +24,14 @@ class WinningLottoService(
         winningLottoRepository.save(winningLotto)
         println("당첨 번호: $lottoNumbers")
     }
-    fun findWinningLotto(id: Long): IntArray {
+    fun findWinningLotto(id: Long): WinningLottoResponseDTO {
         val winningLotto = winningLottoRepository.findById(id).orElseThrow()
         val maxId = winningLottoRepository.findFirstByOrderByIdDesc().id
         if (id == maxId) {
             throw RuntimeException("아직 공개되지 않은 당첨번호입니다.")
         }
-        return intArrayOf(
-            winningLotto.number1,
-            winningLotto.number2,
-            winningLotto.number3,
-            winningLotto.number4,
-            winningLotto.number5,
-            winningLotto.number6,
+        return WinningLottoResponseDTO(
+            numbers = winningLotto.getWinningLottoNumbers(),
         )
     }
 }
