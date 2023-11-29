@@ -2,6 +2,7 @@ package com.example.lottoweb.service
 
 import com.example.lottoweb.domain.User
 import com.example.lottoweb.domain.WinningLotto
+import com.example.lottoweb.dto.GradingResponseDTO
 import com.example.lottoweb.repository.LottoRepository
 import com.example.lottoweb.repository.UserRepository
 import com.example.lottoweb.repository.WinningLottoRepository
@@ -14,11 +15,11 @@ class ScoringSystemService(
     private val userRepository: UserRepository,
     private val winningLottoRepository: WinningLottoRepository,
 ) {
-    fun getTotalMoneyAndRank(user: User): Pair<Int, IntArray> {
+    fun getResult(user: User): GradingResponseDTO {
         val winningLotto = winningLottoRepository.findFirstByOrderByIdDesc()
         val totalMoney = getTotalMoney(user, winningLotto)
         val rankCount = getTotalRank(user, winningLotto)
-        return Pair(totalMoney, rankCount.values.toIntArray())
+        return GradingResponseDTO(user.id, totalMoney, rankCount)
     }
 
     // 동시성 문제를 해결하기 위해 winningLotto를 파라미터로 받는다.
