@@ -1,13 +1,14 @@
 package com.example.lottoweb.Controller
 
 import com.example.lottoweb.service.WinningLottoService
+import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-// @Tag(name = "WinningLotto", description = "당첨 번호 관련 API")
+@Tag(name = "WinningLotto", description = "당첨 번호 관련 API")
 @RestController
 @RequestMapping("/api/winning-lotto")
 class WinningLottoController(
